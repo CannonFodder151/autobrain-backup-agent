@@ -85,7 +85,7 @@ def main():
 
             os.environ["AUTOBRAIN_API_KEY"] = "wrong"
             try:
-                agent.main(["--once"])
+                agent.fetch_backup(url["url"] + "/admin-api/backup", "wrong", agent._opener(""))
                 raise AssertionError("bad key should fail")
             except agent.AgentError as e:
                 assert "401" in str(e), str(e)

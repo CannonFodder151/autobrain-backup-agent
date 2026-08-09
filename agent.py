@@ -12,6 +12,7 @@ Configuration (env):
     KEEP                  max local copies to retain, default 30
     TARGET_URL            autobrain-backup ingest URL; upload if set (optional)
     TARGET_KEY            API key for TARGET_URL if it needs one (optional)
+    TARGET_INSTANCE       instance id to push to (appends ?instance= to TARGET_URL)
     CA_BUNDLE             path to custom CA bundle for TLS (optional)
 
 Run once:  agent.py --once
@@ -149,6 +150,10 @@ def main(argv=None):
     keep = int(os.environ.get("KEEP", "30") or "30")
     target_url = os.environ.get("TARGET_URL", "").rstrip("/")
     target_key = os.environ.get("TARGET_KEY", "")
+    target_instance = os.environ.get("TARGET_INSTANCE", "").strip()
+    if target_instance:
+        sep = "&" if "?" in target_url else "?"
+        target_url += f"{sep}instance={target_instance}"
     opener = _opener(os.environ.get("CA_BUNDLE", ""))
 
     while True:

@@ -44,6 +44,7 @@ Systemd timer (recommended over the loop): run `--once` hourly via
 | `KEEP`         | `30`               | Local copies retained (0 = keep all).    |
 | `TARGET_URL`   | *(unset)*          | `autobrain-backup` ingest URL (POST).    |
 | `TARGET_KEY`   | *(unset)*          | API key for the ingest target.           |
+| `TARGET_INSTANCE` | *(unset)*       | Target instance id; appends `?instance=` to `TARGET_URL` (multi-tenant). |
 | `CA_BUNDLE`    | *(unset)*          | Custom CA bundle for TLS.                |
 
 ## Run
